@@ -19,32 +19,44 @@ for i in range(num_cartas):
 
 print(mazo)
 print(mazo1)
-
-tablero = [mazo,mazo1]
-print(tablero,"\n")
-
+tablero= [mazo,mazo1]
 p_j1 = 0 #3
 p_j2 = 0 #3
 
 print("Comienza jugando el jugador 1")
-tablero_oculto = []
+tablero_oculto1 = []
+tablero_oculto2 = []
 fila = []
 
 for k in range(num_cartas2):
-    fila.append("*")
-for l in range(len(tablero)):
-    tablero_oculto.append(fila)
-print(tablero_oculto)
+    tablero_oculto1.append("*")
+    tablero_oculto2.append("*")
+#print(tablero_oculto)
 
-xd = ""
-for a in range(len(tablero_oculto)):
-    for b in range(len(tablero_oculto[1])):
-        xd += tablero_oculto[a][b]
-    xd += "\n"
-print(xd)
-
-coord = input("Ingresa una coordenada para dar vuelta una carta: ") #5
+coma = ""
+comas = ""
+for a in range(len(tablero_oculto1)):
+    coma += tablero_oculto1[a]
+for b in range(len(tablero_oculto2)):
+    comas += tablero_oculto2[b]
+    #xd += "\n"
+print(coma)
+print(comas)
+coord = input("Ingresa un número para dar vuelta una carta: ") #5
 coord.split(",")
-print(coord)
+coord1 = int(coord[0])
+coord2 = int(coord[2])-1
 
+if coord1 == 1:
+    tablero_oculto1.pop(coord2)
+    carta1 = int(mazo[coord2])
+    tablero_oculto1.insert(coord2,carta1)
+    
+elif coord1 ==2:
+    tablero_oculto2.pop(coord2)
+    carta2  = int(mazo1[coord2])
+    tablero_oculto2.insert(coord2,carta2)
 
+print(coord2)
+print(tablero_oculto1)
+print(tablero_oculto2)
