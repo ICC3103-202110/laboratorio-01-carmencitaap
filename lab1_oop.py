@@ -32,7 +32,8 @@ for k in range(num_cartas2):
     tablero_oculto1.append("*")
     tablero_oculto2.append("*")
 #print(tablero_oculto)
-
+t_o1 = tablero_oculto1
+t_o2 = tablero_oculto2
 coma = ""
 comas = ""
 for a in range(len(tablero_oculto1)):
@@ -42,21 +43,56 @@ for b in range(len(tablero_oculto2)):
     #xd += "\n"
 print(coma)
 print(comas)
-coord = input("Ingresa un número para dar vuelta una carta: ") #5
+coord = input("Ingresa una coordenada para dar vuelta una carta: ") #5
 coord.split(",")
 coord1 = int(coord[0])
 coord2 = int(coord[2])-1
-
+#carta1
 if coord1 == 1:
-    tablero_oculto1.pop(coord2)
+    t_o1.pop(coord2)
     carta1 = int(mazo[coord2])
-    tablero_oculto1.insert(coord2,carta1)
+    t_o1.insert(coord2,carta1)
     
 elif coord1 ==2:
-    tablero_oculto2.pop(coord2)
-    carta2  = int(mazo1[coord2])
-    tablero_oculto2.insert(coord2,carta2)
+    t_o2.pop(coord2)
+    carta1  = int(mazo1[coord2])
+    t_o2.insert(coord2,carta1)
+    
+print(t_o1)
+print(t_o2)
 
-print(coord2)
-print(tablero_oculto1)
-print(tablero_oculto2)
+#carta2
+coord = input("Ingresa una coordenada para dar vuelta una carta: ")
+coord.split(",")
+coord1 = int(coord[0])
+coord2 = int(coord[2])-1
+if coord1 == 1:
+    t_o1.pop(coord2)
+    carta2 = int(mazo[coord2])
+    t_o1.insert(coord2,carta2)
+    
+elif coord1 ==2:
+    t_o2.pop(coord2)
+    carta2  = int(mazo1[coord2])
+    t_o2.insert(coord2,carta2)
+
+print(t_o1)
+print(t_o2)
+
+
+if carta1 == carta2:
+    p_j1 += 1
+    print("Continúa jugando!")
+    print(tablero_oculto1)
+    print(tablero_oculto2)
+else:
+    print("Ahora juega el jugador 2")
+
+print(p_j1)
+    
+    
+    
+
+    
+
+
