@@ -5,104 +5,113 @@ Created on Wed Mar 24 17:31:58 2021
 @author: JPA
 """
 from numpy import random
-num_cartas = int(input("¿Con cuántas cartas quieren jugar?: ")) #1
-gano = 1
-gana = 1
-num_cartas2 = num_cartas
-print("Comienza jugando el jugador 1")
+num_cards = int(input("With how many cards do you want to play?: ")) #1
+won = 1
+lost = 1
+num_cards2 = num_cards
+print("Player 1 starts")
 
-while gano == 1: 
-    
-    mazo = []
-    mazo1 = []
-    for i in range(num_cartas):
+while lost == 1: 
+    gano = 0
+    deck = []
+    deck1 = []
+    for i in range(num_cards):
     #print(num_cartas)
-        num_cartas  -= 1
-        mazo.append(num_cartas+1)
-        mazo1.append(num_cartas+1)
-        random.shuffle(mazo) #2
-        random.shuffle(mazo1) #2
+        num_cards -= 1
+        deck.append(num_cards+1)
+        deck1.append(num_cards+1)
+        random.shuffle(deck) #2
+        random.shuffle(deck1) #2
     #gano = 0
-    print(mazo)
-    print(mazo1)
-    tablero= [mazo,mazo1]
+    print(deck)
+    print(deck1)
+    tablero= [deck,deck1]
     p_j1 = 0 #3
     p_j2 = 0 #3
     
     
-    tablero_oculto1 = []
-    tablero_oculto2 = []
+    hidden_board1 = []
+    hidden_board2 = []
     fila = []
 
-    for k in range(num_cartas2):
-        tablero_oculto1.append("*")
-        tablero_oculto2.append("*")
+    for k in range(num_cards2):
+        hidden_board1.append("*")
+        hidden_board2.append("*")
 #print(tablero_oculto)
 
     tab = ""
     tab2 = ""
-    for a in range(len(tablero_oculto1)):
-        tab += tablero_oculto1[a]
-    for b in range(len(tablero_oculto2)):
-        tab2 += tablero_oculto2[b]
+    for a in range(len(hidden_board1)):
+        tab += hidden_board1[a]
+    for b in range(len(hidden_board2)):
+        tab2 += hidden_board2[b]
     
     print(tab)
     print(tab2)
     
     #gana = 1
-    while gana == 1:
-        cd = input("Ingresa una coordenada para dar vuelta una carta: ") #5
+    while won == 1:
+        #gano = 0
+        cd = input("Enter a coordenate to flip one card (Pick one from each deck): ") #5
         cd.split(",")
         c1 = int(cd[0])
         c2 = int(cd[2])-1
 
 #carta1
         if c1 == 1:
-            tablero_oculto1.pop(c2)
-            carta1 = int(mazo[c2])
-            tablero_oculto1.insert(c2,carta1)
+            hidden_board1.pop(c2)
+            card1 = int(deck[c2])
+            hidden_board1.insert(c2,card1)
     
         elif c1 ==2:
-            tablero_oculto2.pop(c2)
-            carta1  = int(mazo1[c2])
-            tablero_oculto2.insert(c2,carta1)
+            hidden_board2.pop(c2)
+            card1  = int(deck1[c2])
+            hidden_board2.insert(c2,card1)
     
 #carta2
-        coord = input("Ingresa una coordenada para dar vuelta otra carta: ")
+        coord = input("Enter a coordenate to flip another card (Pick one from the deck you haven't chosen): ")
         coord.split(",")
         coord1 = int(coord[0])
         coord2 = int(coord[2])-1
         if coord1 == 1:
-            tablero_oculto1.pop(coord2)
-            carta2 = int(mazo[coord2])
-            tablero_oculto1.insert(coord2,carta2)
+            hidden_board1.pop(coord2)
+            card2 = int(deck[coord2])
+            hidden_board1.insert(coord2,card2)
 
         elif coord1 ==2:
-            tablero_oculto2.pop(coord2)
-            carta2  = int(mazo1[coord2])
-            tablero_oculto2.insert(coord2,carta2)
+            hidden_board2.pop(coord2)
+            card2  = int(deck1[coord2])
+            hidden_board2.insert(coord2,card2)
 
-        print(tablero_oculto1)
-        print(tablero_oculto2)
+        print(hidden_board1)
+        print(hidden_board2)
         #gano = 0
-        if carta1 == carta2:
+        if card1 == card2:
             p_j1 += 1
-            print("Continúa jugando!")
+            print("Keep playing! You chose the right pair")
             
             if c1 == 1:
-                tablero_oculto1.pop(c2)
-                tablero_oculto1.insert(c2, "")
-            if coord1 ==2:
-                tablero_oculto2.pop(coord2)
-                tablero_oculto2.insert(coord2, "")
-            gana = 1
+                hidden_board1.pop(c2)
+                hidden_board1.insert(c2, "")
+            if coord1 == 2:
+                hidden_board2.pop(coord2)
+                hidden_board2.insert(coord2, "")
+            end = hidden_board1.count("")
+            end1 = hidden_board2.count("")
+            won = 1
+            print(hidden_board1)
+            print(hidden_board2)
+            if end == num_cards2 and end == end1:
+                print("You've won!")
+                lose = 0
+                won = 0 
+            
             #gano = 0
-            print(tablero_oculto1)
-            print(tablero_oculto2)
+            
         else:
-            print("Ahora juega el jugador 2")
-            gana = 0
-            gano = 1
+            print("Now player 2 plays")
+            won = 0
+            #lost = 1
     #gano = 0
     
        # if carta1 == carta2:
